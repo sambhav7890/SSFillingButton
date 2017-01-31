@@ -7,8 +7,31 @@ target 'SSFillingButton_Example' do
     inherit! :search_paths
 
     pod 'Quick', '~> 1.0.0'
-  pod 'Nimble', '~> 5.1.1'
-  pod 'FBSnapshotTestCase'
-  pod 'Nimble-Snapshots'
+	pod 'Nimble', '~> 5.1.1'
+	pod 'FBSnapshotTestCase'
+	pod 'Nimble-Snapshots'
   end
+
+end
+
+
+
+post_install do |installer|
+
+	#-- Post Install Start --
+
+	installer.pods_project.targets.each do |target|
+		target.build_configurations.each do |config|
+
+			#Fix for Swift 3
+			config.build_settings['SWIFT_VERSION'] = '3.0'
+
+			#Fix for bitcode
+			config.build_settings['ENABLE_BITCODE'] = 'NO'
+		end
+	end
+
+
+	#-- Post Install End --
+
 end

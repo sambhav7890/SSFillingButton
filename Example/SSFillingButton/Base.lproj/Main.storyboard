@@ -1,25 +1,96 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="acM-T5-TgT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <scene sceneID="Oru-S4-RhK">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="acM-T5-TgT" customClass="ViewController" customModule="SSFillingButton_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="1T4-5z-6Yx"/>
+                        <viewControllerLayoutGuide type="bottom" id="B0e-Cd-tl7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="mzj-Wo-WFZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fv-xc-yFf" customClass="SSFillingButton" customModule="SSFillingButton">
+                                <rect key="frame" x="10" y="135" width="355" height="50"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cdk-w0-pks"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgViewColor">
+                                        <color key="value" red="0.75408405069999995" green="0.0" blue="0.073189623649999994" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="progressViewColor">
+                                        <color key="value" red="0.75408405069999995" green="0.0" blue="0.073189623649999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="textFontSize">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateUpdateProgress" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                        <real key="value" value="0.40000000000000002"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKy-q5-EZO">
+                                <rect key="frame" x="10" y="30" width="355" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="aI4-d8-mw9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldValueChanged:" destination="acM-T5-TgT" eventType="editingChanged" id="nb0-JV-N07"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FW-OZ-Ue5">
+                                <rect key="frame" x="10" y="70" width="355" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IGL-eA-s08"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldValueChanged:" destination="acM-T5-TgT" eventType="editingChanged" id="ctO-VC-Q1n"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7Fv-xc-yFf" firstAttribute="top" secondItem="6FW-OZ-Ue5" secondAttribute="bottom" constant="35" id="5Mg-nd-71y"/>
+                            <constraint firstAttribute="trailing" secondItem="7Fv-xc-yFf" secondAttribute="trailing" constant="10" id="8Ks-Hb-sUR"/>
+                            <constraint firstItem="vKy-q5-EZO" firstAttribute="leading" secondItem="mzj-Wo-WFZ" secondAttribute="leading" constant="10" id="9AN-sP-WEA"/>
+                            <constraint firstItem="vKy-q5-EZO" firstAttribute="top" secondItem="1T4-5z-6Yx" secondAttribute="bottom" constant="10" id="D8d-nV-hGE"/>
+                            <constraint firstAttribute="trailing" secondItem="vKy-q5-EZO" secondAttribute="trailing" constant="10" id="aW7-SL-jr3"/>
+                            <constraint firstItem="6FW-OZ-Ue5" firstAttribute="top" secondItem="vKy-q5-EZO" secondAttribute="bottom" constant="10" id="agR-KN-eFB"/>
+                            <constraint firstAttribute="trailing" secondItem="6FW-OZ-Ue5" secondAttribute="trailing" constant="10" id="msM-20-LDY"/>
+                            <constraint firstItem="7Fv-xc-yFf" firstAttribute="leading" secondItem="mzj-Wo-WFZ" secondAttribute="leading" constant="10" id="pgq-yt-XXN"/>
+                            <constraint firstItem="6FW-OZ-Ue5" firstAttribute="leading" secondItem="mzj-Wo-WFZ" secondAttribute="leading" constant="10" id="wBX-Sb-x9i"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstTextField" destination="vKy-q5-EZO" id="5Jg-TL-GIR"/>
+                        <outlet property="lastTextField" destination="6FW-OZ-Ue5" id="1PP-69-7K3"/>
+                        <outlet property="progressButtonView" destination="7Fv-xc-yFf" id="FZz-N7-Pay"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WWz-1q-W9W" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-311" y="264"/>
         </scene>
     </scenes>
 </document>
