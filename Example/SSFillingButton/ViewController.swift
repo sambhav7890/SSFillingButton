@@ -14,8 +14,9 @@ class ViewController: UIViewController {
 	@IBOutlet weak var progressButtonView: SSFillingButton!
 	@IBOutlet weak var firstTextField: UITextField!
 	@IBOutlet weak var lastTextField: UITextField!
+	@IBOutlet weak var fillingButton: SSTimedFillingButton!
 
-    override func viewDidLoad() {
+	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
 			self.firstTextField.text = nil
 			self.lastTextField.text = nil
 			self.textFieldValueChanged(nil)
+			self.startFilling()
 		}
 
 		self.progressButtonView.completionButtonDidActiveBlock = {
@@ -34,7 +36,21 @@ class ViewController: UIViewController {
 		}
 
 		self.progressButtonView.completionButtonDidNonActiveBlock?()
+
+
+
+		self.fillingButton.text = "Proceed"
+
+		self.fillingButton.completionBlock = {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+				self.startFilling()
+			})
+		}
     }
+
+	func startFilling() {
+		self.fillingButton.startFilling()
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -68,6 +68,28 @@
                                     <action selector="textFieldValueChanged:" destination="acM-T5-TgT" eventType="editingChanged" id="ctO-VC-Q1n"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hX-Wf-6zb" customClass="SSTimedFillingButton" customModule="SSFillingButton">
+                                <rect key="frame" x="10" y="217" width="355" height="50"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateUpdateProgress" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="progressViewColor">
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgViewColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -75,14 +97,19 @@
                             <constraint firstAttribute="trailing" secondItem="7Fv-xc-yFf" secondAttribute="trailing" constant="10" id="8Ks-Hb-sUR"/>
                             <constraint firstItem="vKy-q5-EZO" firstAttribute="leading" secondItem="mzj-Wo-WFZ" secondAttribute="leading" constant="10" id="9AN-sP-WEA"/>
                             <constraint firstItem="vKy-q5-EZO" firstAttribute="top" secondItem="1T4-5z-6Yx" secondAttribute="bottom" constant="10" id="D8d-nV-hGE"/>
+                            <constraint firstItem="7hX-Wf-6zb" firstAttribute="top" secondItem="7Fv-xc-yFf" secondAttribute="bottom" constant="32" id="M1v-D5-yZw"/>
                             <constraint firstAttribute="trailing" secondItem="vKy-q5-EZO" secondAttribute="trailing" constant="10" id="aW7-SL-jr3"/>
                             <constraint firstItem="6FW-OZ-Ue5" firstAttribute="top" secondItem="vKy-q5-EZO" secondAttribute="bottom" constant="10" id="agR-KN-eFB"/>
+                            <constraint firstItem="7hX-Wf-6zb" firstAttribute="trailing" secondItem="7Fv-xc-yFf" secondAttribute="trailing" id="auk-87-w0g"/>
+                            <constraint firstItem="7hX-Wf-6zb" firstAttribute="leading" secondItem="7Fv-xc-yFf" secondAttribute="leading" id="hqj-Cp-x3y"/>
+                            <constraint firstItem="7hX-Wf-6zb" firstAttribute="height" secondItem="7Fv-xc-yFf" secondAttribute="height" id="kbf-VB-253"/>
                             <constraint firstAttribute="trailing" secondItem="6FW-OZ-Ue5" secondAttribute="trailing" constant="10" id="msM-20-LDY"/>
                             <constraint firstItem="7Fv-xc-yFf" firstAttribute="leading" secondItem="mzj-Wo-WFZ" secondAttribute="leading" constant="10" id="pgq-yt-XXN"/>
                             <constraint firstItem="6FW-OZ-Ue5" firstAttribute="leading" secondItem="mzj-Wo-WFZ" secondAttribute="leading" constant="10" id="wBX-Sb-x9i"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fillingButton" destination="7hX-Wf-6zb" id="xZ5-qT-aZG"/>
                         <outlet property="firstTextField" destination="vKy-q5-EZO" id="5Jg-TL-GIR"/>
                         <outlet property="lastTextField" destination="6FW-OZ-Ue5" id="1PP-69-7K3"/>
                         <outlet property="progressButtonView" destination="7Fv-xc-yFf" id="FZz-N7-Pay"/>

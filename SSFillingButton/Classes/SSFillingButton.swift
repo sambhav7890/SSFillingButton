@@ -77,8 +77,19 @@ public typealias SSProgressCompletionBlock = (Void) -> (Void)
 	open var completionButtonDidNonActiveBlock: SSProgressCompletionBlock?
 	open var completionButtonDidActiveBlock: SSProgressCompletionBlock?
 
-	open static func button(_ frame: CGRect = CGRect.zero, completion: SSProgressCompletionBlock? = nil) -> SSFillingButton? {
+	open class func button(_ frame: CGRect = CGRect.zero, completion: SSProgressCompletionBlock? = nil) -> SSFillingButton? {
 		return SSFillingButton.init(frame: frame, completion: completion)
+	}
+
+	public init(frame: CGRect = CGRect.zero, completion: SSProgressCompletionBlock? = nil) {
+		self.completionBlock = completion;
+		super.init(frame: frame)
+		setup()
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		setup()
 	}
 
 	open func updateProgress(_ progress: CGFloat) {
@@ -124,17 +135,6 @@ public typealias SSProgressCompletionBlock = (Void) -> (Void)
 		self.alpha = 0.9
 	}
 
-	public init(frame: CGRect = CGRect.zero, completion: SSProgressCompletionBlock? = nil) {
-		self.completionBlock = completion;
-		super.init(frame: frame)
-		setup()
-	}
-
-	public required init?(coder aDecoder: NSCoder) {
-	    super.init(coder: aDecoder)
-		setup()
-	}
-
 	//Mark - Private Methods/Variables
 
 	weak var bgView: UIView!
@@ -163,8 +163,7 @@ public typealias SSProgressCompletionBlock = (Void) -> (Void)
 		self.addSubview(view)
 		self.bgView = view
 
-		let constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": view])
-		self.addConstraints(constraints)
+		self.addVerticalConstraints(for: view)
 	}
 
 	func setupProgressView() {
@@ -174,8 +173,7 @@ public typealias SSProgressCompletionBlock = (Void) -> (Void)
 		self.addSubview(view)
 		self.progressView = view
 
-		let constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": view])
-		self.addConstraints(constraints)
+		self.addVerticalConstraints(for: view)
 	}
 
 	func setupCompletionButton() {
@@ -195,24 +193,20 @@ public typealias SSProgressCompletionBlock = (Void) -> (Void)
 
 		self.completionButton = button
 
-		let verticalconstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": button])
-		self.addConstraints(verticalconstraints)
-
-		let horizontalconstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": button])
-		self.addConstraints(horizontalconstraints)
-
+		self.addContainmentConstraints(for: button)
 	}
 
 
 	func setupCommonConstraints() {
+
 		let views = ["bgView": self.bgView, "progressView" : self.progressView]
 
 		let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[progressView]-(0)-[bgView]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
 		self.addConstraints(horizontalConstraints)
 
 		self.progressViewWidthConstraint = NSLayoutConstraint(item: self.progressView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.width, multiplier: 0, constant: 0)
-		self.addConstraint(progressViewWidthConstraint)
 
+		self.addConstraint(progressViewWidthConstraint)
 
 	}
 
@@ -254,6 +248,33 @@ public typealias SSProgressCompletionBlock = (Void) -> (Void)
 	func completionButtonDidActive() {
 		self.delegate?.completionButtonDidActive?()
 		self.completionButtonDidActiveBlock?()
+	}
+
+}
+
+fileprivate extension UIView {
+
+	func addContainmentConstraints(for subView: UIView) {
+		self.addVerticalConstraints(for: subView)
+		self.addHorizontalConstraints(for: subView)
+	}
+
+	func addVerticalConstraints(for subView:UIView) {
+		let constraints = subView.verticalConstraintsWithSuperview()
+		self.addConstraints(constraints)
+	}
+
+	func verticalConstraintsWithSuperview() -> [NSLayoutConstraint] {
+		return NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[view]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": self])
+	}
+
+	func addHorizontalConstraints(for subView:UIView) {
+		let constraints = subView.horizontalConstraintsWithSuperview()
+		self.addConstraints(constraints)
+	}
+
+	func horizontalConstraintsWithSuperview() -> [NSLayoutConstraint] {
+		return NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[view]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": self])
 	}
 
 }
